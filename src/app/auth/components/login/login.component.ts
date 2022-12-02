@@ -12,7 +12,9 @@ import { AuthenticationService } from 'src/app/shared/services/authentication.se
 export class LoginComponent implements OnInit {
   loginForm!: FormGroup ;
 
-  constructor(private formBuilder:FormBuilder,private authService:AuthenticationService, private toast: ToastrService) { }
+  constructor(private formBuilder:FormBuilder,private authService:AuthenticationService, private toast: ToastrService,private router:Router) {
+    this.isLoggedIn();
+   }
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
@@ -24,33 +26,19 @@ export class LoginComponent implements OnInit {
     return this.loginForm.controls;
   }
 
+  isLoggedIn(){
+    if(this.authService.getSessionInfo())
+      this.router.navigate([this.authService.getSessionInfo().usertype],{replaceUrl:true})
+  }
+
   onSubmit() {
     if(this.loginForm.valid)
       this.authService.login(this.loginForm.value).subscribe((resp:any)=>{
         console.log(resp)
+        this.router.navigate([this.authService.getSessionInfo().usertype],{replaceUrl:true})
       })
     else
       this.toast.error('Provide Username & Password First!')
-  //   this.alertService.info('Checking User Info');
-  //   this.progressBar.startLoading();
-  //   const loginObserver = {
-  //     next: x => {
-  //       this.progressBar.setSuccess();
-  //       console.log('User logged in');
-  //       this.alertService.success('Logged In');
-  //       this.progressBar.completeLoading();
-  //     },
-  //     error: err => {
-  //       this.progressBar.setError();
-  //       console.log(err);
-  //       this.alertService.danger('Unable to Login');
-  //       this.progressBar.completeLoading();
-  //     }
-  //   };
-  //   this.authService.login(f.value).subscribe(loginObserver);
-
-  // }
-
 }
 
 }

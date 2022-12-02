@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AuthenticationService } from 'src/app/shared/services/authentication.service';
 
@@ -12,7 +13,7 @@ export class RegisterComponent implements OnInit {
 
   registerForm!: FormGroup;
   userTypes = [{key:"Student", value: 'student'},{key:"Assessor", value: 'assessor'}];
-  constructor(private formBuilder:FormBuilder,private authService:AuthenticationService, private toast: ToastrService) { }
+  constructor(private formBuilder:FormBuilder,private authService:AuthenticationService, private toast: ToastrService, private router:Router) { }
 
   ngOnInit(): void {
     this.registerForm = this.formBuilder.group({
@@ -34,16 +35,21 @@ export class RegisterComponent implements OnInit {
       if(this.checkPasswords(this.registerForm)){
         this.toast.error('Password & Confirm Password Must Be The Same!')
       }
-
+      else{
+        this.authService.signup(this.registerForm.value).subscribe((resp:any)=>{
+          console.log(resp);
+          if(resp.success){
+            this.toast.info('Account Creation Successful! Redirecting Now..')
+            setTimeout(()=>{
+              this.router.navigate([this.authService.getSessionInfo().usertype],{replaceUrl:true})
+            },3400)
+          }
+        })
+      }
     }
     else{
       this.toast.error('Provide Required Data First!')
       console.log(this.registerForm.value)
-  }
-      // this.authService.login(this.registerForm.value).subscribe((resp:any)=>{
-      //   console.log(resp)
-      // })
-    // else
-    //   this.toast.error('Provide Username & Password First!')
+    }
   }
 }

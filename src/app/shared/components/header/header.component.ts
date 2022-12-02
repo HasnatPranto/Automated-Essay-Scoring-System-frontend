@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthenticationService } from '../../services/authentication.service';
 
 @Component({
   selector: 'app-header',
@@ -9,10 +11,30 @@ export class HeaderComponent implements OnInit {
 
   loggedIn = false;
   assessor = false;
+  user!: any
 
-  constructor() { }
+  constructor(private authService:AuthenticationService, private router: Router) {}
 
   ngOnInit(): void {
+    this.setNavBar()
   }
 
+  setNavBar(){
+    this.authService.authState.subscribe((data:any)=>{
+      if(data)
+      {
+        this.user = data;
+        this.loggedIn = true;
+      }
+      else{
+        this.loggedIn = false;
+      }
+    })
+  }
+
+  logOut(){
+    this.authService.logOut();
+    this.setNavBar();
+    this.router.navigate([''])
+  }
 }

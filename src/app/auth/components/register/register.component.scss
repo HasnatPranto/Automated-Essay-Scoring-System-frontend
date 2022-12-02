@@ -31,8 +31,8 @@ body{
 .container{
   background: #fff;
   margin-top: 4%;
-  width: 410px;
-  padding: 30px;
+  width: 510px;
+  padding: 30px 60px;
   box-shadow: 0 0 8px rgba(0,0,0,0.1);
 }
 #show:checked ~ .container{
@@ -127,66 +127,73 @@ form .signup-link a:hover{
   text-decoration: underline;
 }
 
-
-/* Cool infinite background scrolling animation.
- * Twitter: @kootoopas
- */
-
-/* Exo thin font from Google. */
-@import url(https://fonts.googleapis.com/css?family=Exo:100);
-
-/* Background data (Original source: https://subtlepatterns.com/grid-me/) */
-$bg-url: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAIAAACRXR/mAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAIGNIUk0AAHolAACAgwAA+f8AAIDpAAB1MAAA6mAAADqYAAAXb5JfxUYAAABnSURBVHja7M5RDYAwDEXRDgmvEocnlrQS2SwUFST9uEfBGWs9c97nbGtDcquqiKhOImLs/UpuzVzWEi1atGjRokWLFi1atGjRokWLFi1atGjRokWLFi1af7Ukz8xWp8z8AAAA//8DAJ4LoEAAlL1nAAAAAElFTkSuQmCC";
-$bg-width: 50px;
-$bg-height: 50px;
-
-/* Animations */
-@-webkit-keyframes bg-scrolling-reverse {
-  100% { background-position: $bg-width $bg-height; }
-}
-@-moz-keyframes    bg-scrolling-reverse {
-  100% { background-position: $bg-width $bg-height; }
-}
-@-o-keyframes      bg-scrolling-reverse {
-  100% { background-position: $bg-width $bg-height; }
-}
-@keyframes         bg-scrolling-reverse {
-  100% { background-position: $bg-width $bg-height; }
-}
-
-@-webkit-keyframes bg-scrolling {
-  0% { background-position: $bg-width $bg-height; }
-}
-@-moz-keyframes    bg-scrolling {
-  0% { background-position: $bg-width $bg-height; }
-}
-@-o-keyframes      bg-scrolling {
-  0% { background-position: $bg-width $bg-height; }
-}
-@keyframes         bg-scrolling {
-  0% { background-position: $bg-width $bg-height; }
-}
-
-/* Main styles */
 body {
+  margin: auto;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  overflow: auto;
+  background: linear-gradient(315deg, rgb(190, 246, 255) 3%, rgb(138, 192, 246) 38%, rgb(136, 215, 210) 68%, rgb(154, 209, 241) 98%);
+  animation: gradient 15s ease infinite;
+  background-size: 400% 400%;
+  background-attachment: fixed;
+}
 
-  font: 400 16px/1.5 exo, ubuntu, "segoe ui", helvetica, arial, sans-serif;
-  /* img size is 50x50 */
-  background: url($bg-url) repeat 0 0;
+@keyframes gradient {
+  0% {
+      background-position: 0% 0%;
+  }
+  50% {
+      background-position: 100% 100%;
+  }
+  100% {
+      background-position: 0% 0%;
+  }
+}
 
-  -webkit-animation: bg-scrolling-reverse .92s infinite; /* Safari 4+ */
-  -moz-animation:    bg-scrolling-reverse .92s infinite; /* Fx 5+ */
-  -o-animation:      bg-scrolling-reverse .92s infinite; /* Opera 12+ */
-  animation:         bg-scrolling-reverse .92s infinite; /* IE 10+ */
-  -webkit-animation-timing-function: linear;
-  -moz-animation-timing-function:    linear;
-  -o-animation-timing-function:      linear;
-  animation-timing-function:         linear;
+.wave {
+  background: rgb(255 255 255 / 25%);
+  border-radius: 1000% 1000% 0 0;
+  position: fixed;
+  width: 200%;
+  height: 12em;
+  animation: wave 10s -3s linear infinite;
+  transform: translate3d(0, 0, 0);
+  opacity: 0.8;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
+}
 
-  &::before {
-    font-size: 8rem;
-    font-weight: 100;
-    font-style: normal;
+.wave:nth-of-type(2) {
+  bottom: -1.25em;
+  animation: wave 18s linear reverse infinite;
+  opacity: 0.8;
+}
+
+.wave:nth-of-type(3) {
+  bottom: -2.5em;
+  animation: wave 20s -1s reverse infinite;
+  opacity: 0.9;
+}
+
+@keyframes wave {
+  2% {
+      transform: translateX(1);
+  }
+
+  25% {
+      transform: translateX(-25%);
+  }
+
+  50% {
+      transform: translateX(-50%);
+  }
+
+  75% {
+      transform: translateX(-25%);
+  }
+
+  100% {
+      transform: translateX(1);
   }
 }
 

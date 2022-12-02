@@ -3,7 +3,7 @@
 
     <div class="container">
       <div class="text">SIGN UP</div>
-      <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" action="#">
+      <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
         <div class="data">
           <label>Fullname</label><span style="color:red"> *</span>
           <input formControlName="fullname" type="text" />

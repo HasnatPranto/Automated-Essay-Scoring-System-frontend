@@ -2,9 +2,11 @@
   rel="stylesheet"
   href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css"
 />
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-info">
   <div class="container-fluid">
-    <i class="icon-cog fa fa-clipboard-check" style="color:rgb(0, 145, 255);font-size: larger;margin-right: 10px;"></i><a class="navbar-brand" href="#">Automated Essay Scoring System</a>
+    <i class="icon-cog fa fa-clipboard-check" style="color:rgb(255, 255, 255);font-size: larger;margin-right: 10px;"></i><a class="navbar-brand" href="#">Automated Essay Scoring System</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -15,7 +17,6 @@
             <span class="visually-hidden">(current)</span>
           </a>
         </li>
-        <div *ngIf="loggedIn">
         <li class="nav-item">
           <a class="nav-link" href="#">Features</a>
         </li>
@@ -25,18 +26,12 @@
         <li class="nav-item">
           <a class="nav-link" href="#">About</a>
         </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Dropdown</a>
-          <div class="dropdown-menu">
-            <a class="dropdown-item" href="#">Action</a>
-            <a class="dropdown-item" href="#">Another action</a>
-            <a class="dropdown-item" href="#">Something else here</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Separated link</a>
-          </div>
-        </li>
-        </div>
       </ul>
+      <div *ngIf="loggedIn" style="display: inline-flex;">
+        <i class="icon-cog fa-solid fa-circle-user"  style="color:rgb(255, 255, 255);font-size: 30px;"></i>
+       <span style="font-size: large; font-weight: 600;color: white;margin: 0px 15px 0px 10px;">{{user?.username}}</span>
+       <i class="con-cog fa-solid fa-right-from-bracket" style="color:rgb(255, 255, 255);font-size: 30px;" (click)="logOut()"></i>
+      </div>
       <!-- <form class="d-flex">
         <input class="form-control me-sm-2" type="text" placeholder="Search">
         <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>

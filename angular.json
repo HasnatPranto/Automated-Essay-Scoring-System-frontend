@@ -29,9 +29,11 @@
             ],
             "styles": [
               "src/styles.scss",
-              "bootswatch/dist/flatly/bootstrap.min.css"
+              "bootswatch/dist/litera/bootstrap.min.css"
             ],
-            "scripts": []
+            "scripts": [
+              "./node_modules/bootstrap/dist/js/bootstrap.min.js"
+            ]
           },
           "configurations": {
             "production": {

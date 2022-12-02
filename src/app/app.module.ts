@@ -9,6 +9,8 @@ import { AppComponent } from './app.component';
 import { AuthModule } from './auth/auth.module';
 import { SharedModule } from './shared/shared.module';
 import { AuthInterceptorService } from './shared/services/auth-interceptor.service';
+import { AssessorDashboardModule } from './assessor-dashboard/assessor-dashboard.module';
+import { StudentDashboardModule } from './student-dashboard/student-dashboard.module';
 
 @NgModule({
   declarations: [
@@ -20,6 +22,8 @@ import { AuthInterceptorService } from './shared/services/auth-interceptor.servi
     BrowserAnimationsModule,
     SharedModule,
     AuthModule,
+    AssessorDashboardModule,
+    StudentDashboardModule,
     FormsModule,
     HttpClientModule,
     ToastrModule.forRoot({
