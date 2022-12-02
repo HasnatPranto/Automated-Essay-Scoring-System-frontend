@@ -1,0 +1,41 @@
+<body>
+  <div class="center">
+
+    <div class="container">
+      <div class="text">SIGN UP</div>
+      <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" action="#">
+        <div class="data">
+          <label>Fullname</label><span style="color:red"> *</span>
+          <input formControlName="fullname" type="text" />
+        </div>
+        <div class="data">
+          <label>Username</label><span style="color: red"> *</span>
+          <input formControlName="username" type="text" />
+        </div>
+        <div class="data">
+          <label> User Type<span style="color: red"> *</span>
+          </label>
+          <select class="form-control" formControlName="type">
+            <option value="" disabled selected hidden> select type</option>
+            <option *ngFor="let item of userTypes" [value]=item.value>{{item.key}}</option>
+          </select>
+        </div>
+        <div class="data">
+          <label style="margin-top: 4px;">Password</label><span style="color:red"> *</span>
+          <input formControlName="password" type="password"/>
+        </div>
+        <div class="data">
+          <label>Confirm Password</label><span style="color:red"> *</span>
+          <input formControlName="confirmPassword" type="password"/>
+        </div>
+        <div class="btn">
+          <div class="inner"></div>
+          <button type="submit">Sign Up</button>
+        </div>
+        <div class="signup-link">
+          <a [routerLink]="['/login']" style="text-decoration: none;">Already Have an Account?</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</body>

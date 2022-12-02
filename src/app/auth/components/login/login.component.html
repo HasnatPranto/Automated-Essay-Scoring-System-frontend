@@ -1,0 +1,64 @@
+  <body>
+
+    <div class="center">
+
+      <div class="container">
+        <div class="text">LOG IN</div>
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" action="#">
+          <div class="data">
+            <label>Username</label>
+            <input formControlName="username" type="text" />
+          </div>
+          <div class="data">
+            <label>Password</label>
+            <input formControlName="password" type="password"/>
+          </div>
+          <div class="btn">
+            <div class="inner"></div>
+            <button type="submit">login</button>
+          </div>
+          <div class="signup-link">
+            <a [routerLink]="['/signin']" style="text-decoration: none;">Create a New Account?</a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </body>
+
+<!-- <p>login works!</p>
+<div class="row" style="justify-content:center; border: 1px;">
+  <div class="col-md-3 mt-4">
+      <h3>Login</h3>
+      <form #f="ngForm"
+            (ngSubmit)="onSubmit(f)">
+          <div class="form-group">
+              <label for="loginUsername">Username</label>
+              <input type="text"
+                     name="username"
+                     ngModel
+                     required
+                     #username="ngModel"
+                     class="form-control"
+                     id="loginUsername"
+                     placeholder="Enter username">
+          </div>
+          <div class="form-group">
+              <label for="loginPassword">Password</label>
+              <input type="password"
+                     name="password"
+                     ngModel
+                     required
+                     #password="ngModel"
+                     class="form-control"
+                     id="loginPassword"
+                     placeholder="Password">
+          </div>
+          <div style="text-align: right;" class="form-group form-check">
+              <a [routerLink]="['/register']" style="text-decoration: none;">Create a New Account?</a>
+          </div>
+          <button type="submit"
+                  [disabled]="f.invalid"
+                  class="btn btn-success">Login <i class="fas fa-sign-in-alt"></i></button>
+      </form>
+  </div>
+</div> -->

@@ -1,1 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
+@import '~ngx-toastr/toastr.css';
+.toast-bottom-center {
+  position: absolute;
+  bottom: 5px;
+  left: 38%;
+}
+.ngx-toastr {
+  width: 420px !important;  // Specify toastr-dialog width for all devices
+}
