@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { StudentDashboardRoutingModule } from './student-dashboard-routing.module';
 import { StudentIndexComponent } from './components/student-index/student-index.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -11,7 +12,9 @@ import { StudentIndexComponent } from './components/student-index/student-index.
   ],
   imports: [
     CommonModule,
-    StudentDashboardRoutingModule
+    StudentDashboardRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
   ]
 })
 export class StudentDashboardModule { }

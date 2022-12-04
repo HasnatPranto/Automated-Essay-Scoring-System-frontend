@@ -29,7 +29,8 @@ export class RegisterComponent implements OnInit {
     const pass = group.controls['password'].value;
     const confirmPass = group.controls['confirmPassword'].value;
     return pass == confirmPass ? null : { notSame: true };
-}
+  }
+
   onSubmit(){
     if(this.registerForm.valid){
       if(this.checkPasswords(this.registerForm)){
@@ -42,7 +43,7 @@ export class RegisterComponent implements OnInit {
             this.toast.info('Account Creation Successful! Redirecting Now..')
             setTimeout(()=>{
               this.router.navigate([this.authService.getSessionInfo().usertype],{replaceUrl:true})
-            },3400)
+            },1000)
           }
         })
       }

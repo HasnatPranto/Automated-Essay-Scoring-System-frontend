@@ -1,0 +1,111 @@
+.main-window{
+  position: absolute;
+  margin-left:22.5%;
+  padding:0% 1% 1%;
+  height: max-content;
+  margin-top: .5%;
+  width: 60%;
+  min-height: 100vh;
+  border-right: #454857;
+  border: 1px;
+  box-shadow: 0.25rem 0.25rem 0.6rem rgba(0,0,0,0.05), 0 0.5rem 1.125rem rgba(75,0,0,0.05);
+}
+
+.marking-window{
+  margin-left:82.5%;
+  padding:0% 1% 1%;
+  margin-top: .5%;
+  height: max-content;
+  width: 17%;
+  min-height: 100vh;
+  border-right: #454857;
+  border: 1px;
+  box-shadow: 0.25rem 0.25rem 0.6rem rgba(0,0,0,0.05), 0 0.5rem 1.125rem rgba(75,0,0,0.05);
+}
+.sidebar-title{
+  font-size: 25px;
+  margin-bottom: 15px;
+  font-weight: 600;
+  margin-right: 8%;
+}
+
+.sidebar{
+  position: absolute;
+  padding: 1%;
+  left: 5px;
+  width: 22%;
+  height: 100vh;
+  background-color: rgb(216, 226, 233);
+
+  box-shadow: 0.25rem 0.25rem 0.6rem rgba(0,0,0,0.05), 0 0.5rem 1.125rem rgba(75,0,0,0.05);
+}
+
+.chevron{
+ float: inline-end;
+ margin-top: 5px;
+}
+
+ul{
+  margin-top: 15px;
+  margin-left: -15px;
+  list-style: none
+}
+li{
+  height: 15px;
+  padding-right: 22px;
+  cursor: pointer;
+}
+li:hover{
+  color: rgb(70, 178, 72);
+}
+
+li:focus {
+  color: rgb(70, 178, 72);
+  outline: none;
+}
+
+.radio {
+	background: #454857;
+  margin-top: 3px;
+  margin-left: 13px;
+  height: 100%;
+  width: auto;
+	padding: 4px;
+	border-radius: 3px;
+	box-shadow: inset 0 0 0 3px rgba(35, 33, 45, 0.3),
+		0 0 0 3px rgba(185, 185, 185, 0.3);
+	//position: relative;
+}
+
+.radio input {
+	width: auto;
+	height: 100%;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	outline: none;
+	cursor: pointer;
+	border-radius: 2px;
+	padding: 4px 8px;
+	background: #454857;
+	color: #bdbdbdbd;
+	font-size: 14px;
+	font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+		"Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji",
+		"Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+	transition: all 100ms linear;
+}
+
+.radio input:checked {
+	background-image: linear-gradient(180deg, #95d891, #74bbad);
+	color: #fff;
+	box-shadow: 0 1px 1px #0000002e;
+	text-shadow: 0 1px 0px #79485f7a;
+}
+
+.radio input:before {
+	content: attr(label);
+	display: inline-block;
+	text-align: center;
+	width: 100%;
+}

@@ -11,20 +11,20 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarColor01">
-      <ul class="navbar-nav me-auto">
-        <li class="nav-item">
+      <ul *ngIf="loggedIn && user.usertype=='assessor'" class="navbar-nav me-auto">
+        <!-- <li class="nav-item">
           <a class="nav-link active" href="#">Home
             <span class="visually-hidden">(current)</span>
           </a>
-        </li>
+        </li> -->
+
         <li class="nav-item">
-          <a class="nav-link" href="#">Features</a>
+          <a class="nav-link active" routerLink="/assessor"><span style="font-weight: 600; font-size: large; color: rgb(0, 255, 221);">Assessor Dashboard</span></a>
         </li>
+      </ul>
+      <ul *ngIf="loggedIn && user.usertype=='student'" class="navbar-nav me-auto">
         <li class="nav-item">
-          <a class="nav-link" href="#">Pricing</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">About</a>
+          <a class="nav-link active" routerLink="/student"><span style="font-weight: 600; font-size: large; color: rgb(0, 255, 221);">Student Dashboard</span></a>
         </li>
       </ul>
       <div *ngIf="loggedIn" style="display: inline-flex;">

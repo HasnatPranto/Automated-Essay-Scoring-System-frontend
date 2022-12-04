@@ -1,0 +1,44 @@
+
+<div class="sidebar">
+  <div style="display: flex;"><span class="sidebar-title">Submission</span>
+  <div class="radio">
+    <input label="Done" type="radio" id="done" name="status" value='done' checked (change)="showStudents($event)">
+    <input label="Pending" type="radio" id="pending" name="status" value='pending' (change)="showStudents($event)">
+  </div>
+  </div>
+  <ul>
+    <div *ngIf="isSubmitted">
+      <li (click)="doAssessment(item)" tabindex="1" *ngFor="let item of submissionDone">{{item.student}} <i class="fa-solid fa-chevron-right chevron"></i><hr> </li>
+    </div>
+    <div *ngIf="!isSubmitted">
+      <li (click)="doAssessment(item)" tabindex="1" *ngFor="let item of submissionPending">{{item.student}} <i class="fa-solid fa-chevron-right chevron"></i><hr></li>
+    </div>
+  </ul>
+</div>
+<div class="main-window">
+  <span style="font-size: 25px;font-weight: 600;">Topic: {{topic}}</span>
+  <div *ngIf="assessmentInHand">
+    <ngx-spinner type="ball-scale-multiple"><span style="color: white;">Evaluating..</span></ngx-spinner>
+    <span style="float: right;" *ngIf="!assessmentInHand.late_submit"><span class="badge bg-success">Duly Submitted</span></span>
+    <span style="float: right;" *ngIf="assessmentInHand.late_submit"><span class="badge bg-danger">Late Submission</span></span>
+    <div style="font-size: 20px;font-weight: 500;margin-top: 2%;"><b>Student Name:</b> {{assessmentInHand.student}}</div><br>
+    <div style="font-size: 20px;font-weight: 600;"><i> Answer Script</i></div><hr>
+    <div [innerHTML]="assessmentInHand.content"></div>
+  </div>
+</div>
+<div class="marking-window">
+  <form action="#">
+    <div class="data">
+      <label>Manual Score</label>
+      <input type="number" />
+    </div>
+    <div class="data">
+      <label>System Score</label><button class="btn">Generate</button>
+      <input type="number"/>
+    </div>
+    <div class="btn">
+      <div class="inner"></div>
+      <button type="submit">Submit</button>
+    </div>
+  </form>
+</div>

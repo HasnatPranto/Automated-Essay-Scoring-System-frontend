@@ -8,6 +8,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthModule } from './auth/auth.module';
 import { SharedModule } from './shared/shared.module';
+import { NgxSpinnerModule } from "ngx-spinner";
 import { AuthInterceptorService } from './shared/services/auth-interceptor.service';
 import { AssessorDashboardModule } from './assessor-dashboard/assessor-dashboard.module';
 import { StudentDashboardModule } from './student-dashboard/student-dashboard.module';
@@ -25,6 +26,7 @@ import { StudentDashboardModule } from './student-dashboard/student-dashboard.mo
     AssessorDashboardModule,
     StudentDashboardModule,
     FormsModule,
+    NgxSpinnerModule,
     HttpClientModule,
     ToastrModule.forRoot({
       timeOut: 3500,

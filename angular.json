@@ -29,7 +29,9 @@
             ],
             "styles": [
               "src/styles.scss",
-              "bootswatch/dist/litera/bootstrap.min.css"
+              "bootswatch/dist/litera/bootstrap.min.css",
+              "node_modules/ngx-spinner/animations/ball-scale-multiple.css",
+              "node_modules/ngx-spinner/animations/line-scale-pulse-out-rapid.css"
             ],
             "scripts": [
               "./node_modules/bootstrap/dist/js/bootstrap.min.js"

@@ -1,1 +1,146 @@
-<p>student-index works!</p>
+<div style="width: 99%; margin: 15px; display: inline-flex;">
+  <div class="card" style="width: 60%;">
+    <div class="card-title" style="margin:15px 0px 0px 20px;"><h2>My Assessments</h2></div>
+    <ul class="nav nav-tabs" role="tablist">
+      <li class="nav-item" role="presentation">
+        <a class="nav-link active" data-bs-toggle="tab" href="#pending"  (click)="toggleView(true,false)" aria-selected="true" role="tab">Pending</a>
+      </li>
+      <li class="nav-item" role="presentation">
+        <a class="nav-link" data-bs-toggle="tab" (click)="toggleView(false,true)" href="#submitted" aria-selected="false" role="tab" tabindex="-1">Submitted</a>
+      </li>
+      <li class="nav-item" role="presentation">
+        <a class="nav-link" data-bs-toggle="tab" href="#enlist" (click)="toggleView(false,false)" aria-selected="false" role="tab" tabindex="-1">Enlist</a>
+      </li>
+    </ul>
+
+    <div id="myTabContent" class="tab-content">
+      <div class="tab-pane fade active show" id="pending" role="tabpanel">
+        <main>
+          <div *ngIf="pendingAssessments.length==0" style="text-align: center;font-size:large">No Pending Assessment Found!</div>
+          <ul class="gradient-list">
+
+            <li *ngFor="let item of pendingAssessments">
+              {{item['topic']}} <span style="float: right;"><button (click)="selectAssessment(item)" class="btn begin-btn">BEGIN</button></span><br>
+              <span style="display: inline-flex; font-size: small; font-weight: 700;">
+                Code: <span style="color: rgb(93, 182, 230); padding-left: 5px;">{{item['assessment_code']}}</span>
+                <span style="right: 10px; position: absolute;">
+                Due By: <span style="color: rgb(255, 49, 22); padding-left: 5px;">{{item['deadline']|date:'EEE, MMMM dd, yyyy'}}</span>
+                </span>
+              </span>
+              <br><span style="font-size: 15px;font-weight: 600;">
+                Assessor: <span style="color: rgb(59, 63, 71); padding-left: 5px;">{{item['assessor']}}</span>
+               </span>
+            </li>
+          </ul>
+          </main>
+      </div>
+      <div class="tab-pane fade" id="submitted" role="tabpanel">
+        <main>
+          <div *ngIf="completedAssessments.length==0" style="text-align: center;font-size:large">No Completed Assessment Found!</div>
+          <div *ngIf="completedAssessments.length>0">
+          <table class="table table-striped" border="1">
+            <colgroup>
+              <col span="1" style="width: 50%;">
+              <col span="1" style="width: 20%;">
+              <col span="1" style="width: 10%;">
+              <col span="1" style="width: 20%;">
+              <col span="1" style="width: 5%;">
+            </colgroup>
+            <thead>
+            <tr>
+              <th scope="col">Topic</th>
+              <th scope="col">Assessor</th>
+              <th scope="col">Score</th>
+              <th scope="col">Late Submission</th>
+              <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let item of completedAssessments">
+              <td>{{ item.topic }}</td>
+              <td>{{ item.assessor }}</td>
+              <td>{{ item.score }}</td>
+              <td>{{ item.late_submit }}</td>
+              <td> <button (click)="viewAssessmentDetails(item)" class="btn btn-info">Details</button></td>
+            </tr>
+            </tbody>
+          </table>
+          </div>
+        </main>
+      </div>
+      <div class="tab-pane fade" id="enlist" style="padding-top: 10px;" role="tabpanel">
+        <span style="margin:18px" >Enlist To a Assessment:</span><br>
+        <div style="margin:5px 15px 10px ;display:inline-flex">
+          <input class="form-control" style="width: 450px;margin-right: 10px;" type="text" placeholder="Search by assessment code" #assessment_code>
+          <button class="btn search-btn" (click)="searchByAssessmentID(assessment_code.value)">Search</button>
+        </div>
+        <div *ngIf="new_assessment" style="margin:0px 15px 10px">
+          <span style="font-size: large;font-weight: 600; color: rgb(20, 46, 151);">Assessment Details:</span><br>
+          <span style="font-weight: 600;">Topic:</span> {{new_assessment.topic}}<br>
+          <span style="font-weight: 600;font-size: small;">Code: </span><span style="font-size: small;color:rgb(0, 145, 255)"> {{new_assessment.assessment_code}}</span>
+          <span style="font-weight: 600;font-size: small; margin-left: 10px;">Deadline: </span><span style="font-size: small;color:rgb(255, 0, 0)"> {{new_assessment.deadline| date:'EEE, MMMM dd, yyyy'}}</span>
+          <span style="font-weight: 600;font-size: small;margin-left: 10px;">Assessor: </span><span style="font-size: small;color:rgb(10, 8, 8)">  {{new_assessment.assessor}}</span><br>
+          <button [disabled]="new_assessment.expired || alreadyEnlisted" (click)="enlist()" class="btn enlist-btn">Enlist</button>
+
+        </div>
+        <div *ngIf="invalid" style="margin:0px 15px 10px;text-align: center;font-size: large;">
+          Invalid Assessment Code! No Assessment Data Found
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card" style="width: 50%;margin:0px 15px 0px 20px" *ngIf="readyForSub">
+    <i class="icon-cog fa-solid fa-rotate-left" style="position: absolute;right: 20px;top:20px;font-size:x-large;" (click)="initForm()"></i>
+    <div class="card-title" style="margin:15px 0px 0px 20px;"><h4>Complete an Assessment</h4>
+    <div class="card-body">
+      <form [formGroup]="assessmentDetailsForm" (ngSubmit)="onSubmit()">
+          <label>Topic</label>
+          <input class="form-control-topic" formControlName="topic" readonly type="text" placeholder="Select assessment code first" />
+          <label> Assessment Code<span style="color: red"> *</span>
+          </label><br>
+          <select class="form-control-select" formControlName="assessment_code" (change)="onCodeSelect($event)">
+            <option value="" disabled selected hidden> select code</option>
+            <option *ngFor="let item of pendingAssessments" [value]=item.assessment_code>{{item.assessment_code}}</option>
+          </select><br>
+          <label>The Essay </label><span style="color: rgb(255, 49, 22); padding-left: 5px;">*</span>
+          <textarea class="form-control" formControlName="content" style="height:320px"></textarea>
+          <br>
+          <div style="margin-top: -20px;text-align: right;margin-right: 30px;"><button class="btn enlist-btn" type="submit">Submit Essay</button></div>
+      </form>
+    </div>
+    </div>
+  </div>
+  <div class="card" style="width: 40%;margin:0px 15px 0px 20px" *ngIf="viewDetails">
+    <i class="icon-cog fa-solid fa-rotate-left" style="position: absolute;right: 20px;top:20px;font-size:x-large;" (click)="toggleView(false,true)"></i>
+    <div class="card-title" style="margin:15px 0px 0px 20px;"><h4 style="margin-left: 10px;">Assessment Details</h4>
+    </div>
+          <div class="card-body" style="margin-left: 13px;">
+            <div class="row">
+              <div class="info-label">Topic</div>
+              <div class="info-data">{{assessmentDetails?.topic}}</div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="info-label">Assessor</div>
+              <div class="info-data">{{assessmentDetails?.assessor}}</div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="info-label">Late Submission</div>
+              <div class="info-data">{{assessmentDetails?.late_submit}}</div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="info-label">Score</div>
+              <div class="info-data">{{assessmentDetails?.score}}</div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="info-label">Essay</div>
+            </div>
+            <div class="row">
+              <textarea readonly style="height:320px;width: 95%; margin: 10px;">{{assessmentDetails?.content}}</textarea>
+            </div>
+          </div>
+
+</div>

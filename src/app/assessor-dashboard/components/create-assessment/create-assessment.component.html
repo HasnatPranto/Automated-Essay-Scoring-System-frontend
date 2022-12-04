@@ -1,0 +1,18 @@
+
+    <div class="container" style="margin-left:30%;margin-top: 10px;">
+      <div class="text" style="text-align: left;"><h4>New Assessment</h4></div>
+      <form [formGroup]="assessmentForm" (ngSubmit)="onSubmit()">
+        <div class="data">
+          <label>Assessment Topic</label><span style="color:red"> *</span>
+          <textarea formControlName="topic" type="text" style="height: 120px;"></textarea>
+        </div>
+        <div class="data"  >
+          <label style="margin-top: 70px;">Due By</label><span style="color:red"> *</span>
+          <input formControlName="deadline" type="date" />
+        </div>
+
+        <div class="inner" style="margin-top: 50px;"></div>
+        <button style="margin-top: 70px;" class="btn btn-success" type="submit">Create</button>
+      </form>
+    </div>
+

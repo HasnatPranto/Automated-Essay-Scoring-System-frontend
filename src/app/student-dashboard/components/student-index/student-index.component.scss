@@ -1,0 +1,209 @@
+.search-btn{
+  height: 50%;
+  margin-top: 2px;
+  width: max-content;
+  border-radius: 2px;
+  color: rgb(255, 255, 255);
+  background-color: rgb(12, 145, 171);
+}
+.begin-btn{
+  padding: 2% 40%;
+  margin-top: 2px;
+  width: max-content;
+  border-radius: 5px;
+  color: rgb(255, 255, 255);
+  background-color: rgb(12, 145, 171);;
+}
+.enlist-btn{
+  margin-top: 1%;
+  padding: .5% 3%;
+  font-size: large;
+  width: max-content;
+  border-radius: 2px;
+  color: rgb(255, 255, 255);
+  background-color: rgb(52, 114, 35);
+}
+
+.enlist-btn:hover{
+  background-color: rgb(19, 79, 3);
+  font-weight: 600;
+}
+
+.begin-btn:hover{
+  background-color: rgb(0, 50, 131);
+}
+
+// form .data input, select{
+//   height: 50%;
+//   width: 50%;
+//   padding-left: 10px;
+//   font-size: 17px;
+//   border: 1px solid silver;
+// }
+
+.form-control-topic{
+  height: 40px;
+  background-color: #e3e6e7;
+  width: 95%;
+  border-radius: 0px;
+  margin-top: 3px;
+  padding: 5px;
+}
+
+.form-control{
+  height: 40px;
+  width: 95%;
+  border-radius: 0px;
+  margin-top: 3px;
+  padding: 5px;
+}
+
+
+label{
+  margin-top: 10px;
+}
+.form-control-select{
+  height: 40px;
+  border-radius: 0px;
+  margin-top: 3px;
+  padding: 5px;
+  width: 50%;
+}
+@import url(https://fonts.googleapis.com/css?family=Montserrat:900|Raleway:400,400i,700,700i);
+
+
+
+/*** VARIABLES ***/
+/* Colors */
+$black: #1d1f20;
+$blue: #83e4e2;
+$green: #a2ed56;
+$yellow: #fddc32;
+$white: #fafafa;
+
+
+
+/*** EXTEND ***/
+/* box-shadow */
+%boxshadow {
+  box-shadow: 0.25rem 0.25rem 0.6rem rgba(0,0,0,0.05), 0 0.5rem 1.125rem rgba(75,0,0,0.05);
+}
+
+
+
+/*** STYLE ***/
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: $white;
+  color: $black;
+  font-family: 'Raleway', sans-serif;
+}
+
+main {
+  display: block;
+  margin: 0 auto;
+  width: 98%;
+  padding: .5rem;
+}
+
+a{
+  text-decoration: none;
+  color: #1d1f20;
+}
+li:hover{
+  font-weight: 600;
+}
+ul.gradient-list {
+  //counter-reset: gradient-counter;
+  list-style: none;
+  margin: 1.75rem 0;
+  padding-left: 1rem;
+  > li {
+    background: white;
+    border-radius: 0 0.5rem 0.5rem 0.5rem;
+    @extend %boxshadow;
+    //counter-increment: gradient-counter;
+    margin-top: 1.2rem;
+    min-height: 3rem;
+    padding: .5rem 3rem;
+    position: relative;
+    &::before,
+    &::after {
+      background: linear-gradient(135deg, $blue 20%,$green 100%);
+      border-radius: 1rem 1rem 0rem 1rem;
+      content: '';
+      height: 2rem;
+      left: -1rem;
+      overflow: hidden;
+      position: absolute;
+      top: -1rem;
+      width: 2rem;
+    }
+    &::before {
+      align-items: flex-end;
+      @extend %boxshadow;
+      //content: counter(gradient-counter);
+      color: $black;
+      display: flex;
+      font: 900 1.5em/1 'Montserrat';
+      justify-content: flex-end;
+      padding: 0.125em 0.25em;
+      z-index: 1;
+    }
+  }
+}
+.css-serial {
+  counter-reset: serial-number;  /* Set the serial number counter to 0 */
+}
+
+.css-serial td:first-child:before {
+  counter-increment: serial-number;  /* Increment the serial number counter */
+  content: counter(serial-number);  /* Display the counter */
+}
+
+.table{
+  width: 100%;
+  align-content: center;
+  margin: 1% auto;
+}
+
+.table td{
+  overflow: hidden;
+}
+.table-striped>tbody>tr:nth-child(odd)>td,
+.table-striped>tbody>tr:nth-child(odd)>th {
+   background-color: rgb(216, 228, 243);
+ }
+
+ .table-striped>thead{
+  background-color: rgb(11, 52, 92); color: rgb(241, 246, 255);
+
+ }
+ .table-striped>thead th {
+  padding: 15px 0px;
+  text-align: center;
+}
+.table-striped>tbody {
+
+  text-align: center;
+}
+
+.info-label{
+  width: 30%;
+  font-weight: 700;
+}
+
+.info-data{
+  width: 70%;
+}
