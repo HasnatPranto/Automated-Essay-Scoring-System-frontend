@@ -41,15 +41,16 @@
       <label><b>Manual Score</b></label><span style="font-size: small;margin-left: 5px"><i>(Full marks: 10)</i></span><br>
       <input [readonly]="assessmentInHand?.manual_score!='Pending' || assessmentInHand?.content==''" (input)="isFinalScoreReady()" formControlName="manualScore" type="number" style="width: 84%;margin-bottom: 3%;;margin-top: 3%;"/>
     </div>
-    <div class="data">
-      <label><b>Automated Score</b></label><button (click)="generateSystemScore()" [disabled]="assessmentInHand?.manual_score!='Pending' || assessmentInHand?.content==''" type="button" class="btn btn-md generate-btn" >Generate</button>
-      <input (change)="isFinalScoreReady()"formControlName="systemScore" readonly type="text" style="width: 84%;background-color: rgb(228, 234, 239);"/>
+    <div class="data" style="margin-top: 5px;">
+      <label><b>System Score</b></label><button (click)="generateSystemScore()" [disabled]="assessmentInHand?.manual_score!='Pending' || assessmentInHand?.content==''" type="button" class="btn btn-md generate-btn" >Generate</button>
+      <input (change)="isFinalScoreReady()"formControlName="systemScore" readonly type="text" style="width: 84%;background-color: rgb(228, 234, 239); margin-top: 2%;"/>
     </div>
-    <div class="data" style="margin-top: 5%;">
+    <div class="data" style="margin-top: 8%;">
       <label><b>Weight</b></label><i style="margin-left: 5px;font-size:small">(Prompt Adherence)</i>
-      <input type="range" max="1" min="0" step=".1" formControlName="weight" (change)="adjustWeight($event)">
+      <input type="range" max="1" min="0" step=".1" formControlName="weight" style="margin-bottom: -13px;color:red" (change)="adjustWeight($event)">
+      <span style="font-size:small;margin-right: 30%;"> Manual</span> <span style="font-size:small;margin-left: 35%;">System</span>
     </div>
-    <div class="data" style="margin-top: 3%;">
+    <div class="data" style="margin-top: 8%;">
       <label><b>Final Score:</b></label>
       <span *ngIf="finalScore" style="font-size: x-large;margin-left:10px;color: rgb(62, 72, 92);">{{finalScore}}</span>
     </div>

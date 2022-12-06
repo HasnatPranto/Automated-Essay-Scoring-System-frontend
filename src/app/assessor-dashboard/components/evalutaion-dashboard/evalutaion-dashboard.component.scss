@@ -50,9 +50,7 @@ a{
   text-decoration: none;
   color: #1d1f20;
 }
-li:hover{
-  font-weight: 600;
-}
+
 ul.gradient-list {
   //counter-reset: gradient-counter;
   list-style: none;
@@ -67,10 +65,13 @@ ul.gradient-list {
     min-height: 3rem;
     padding: .5rem 3rem;
     position: relative;
+    &:hover{
+      background-color: #dbebf4;
+    }
     &::before,
     &::after {
       background: linear-gradient(135deg, $blue 20%,$green 100%);
-      border-radius: 1rem 1rem 0rem 1rem;
+      border-radius: 1rem 1rem 1rem 1rem;
       content: '';
       height: 2rem;
       left: -1rem;

@@ -127,16 +127,23 @@ form .data input:focus{
 }
 
 .generate-btn{
-  color: green;padding:2% 4%;margin: 2%;
-  margin-top: 0px;
-  margin-left: 2%;
+  color: rgba(8, 72, 168, 0.723);padding:2% 4%;margin: 2%;
+
+  margin-left: 8.5%;
+  font-weight: 600;
+  background-color: #edeeee;
+  border-radius: 10px;
+  box-shadow: 0.25rem 0.25rem 0.6rem rgba(8, 72, 168, 0.137), 0 0.5rem 1.125rem rgba(8, 72, 168, 0.119);
 }
 .generate-btn:disabled{
   border: none;
+  box-shadow: none;
 }
 .generate-btn:hover{
   font-weight: 600;
   border-color: green;
+  color: green;
+  box-shadow: 0.25rem 0.25rem 0.6rem rgba(0, 87, 0, 0.137), 0 0.5rem 1.125rem rgba(2, 57, 2, 0.141);
 }
 .submit-btn{
   background-color: rgb(56, 156, 192);

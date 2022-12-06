@@ -80,7 +80,7 @@ export class AssessmentEvaluationComponent implements OnInit {
   }
 
   adjustWeight(event:any){
-    console.log(event.target.value, this.evaluationForm.get('weight')?.value);
+    //console.log(event.target.value, this.evaluationForm.get('weight')?.value);
     this.isFinalScoreReady()
   }
 
@@ -90,14 +90,14 @@ export class AssessmentEvaluationComponent implements OnInit {
   }
 
   generateSystemScore(){
-
-    if(this.assessmentInHand){
+    if(this.assessmentInHand  && this.assessmentInHand.content.length>50){
       this.spinner.show();
       this.assessorService.getSystemScore(this.assessmentInHand.content).subscribe((resp:any)=>{
         this.spinner.hide();
         if(resp.success){
+          console.log(resp.result)
           this.evaluationForm.patchValue({
-            systemScore: resp.result
+            systemScore: Number(resp.result)
           })
           this.isFinalScoreReady();
         }
@@ -105,9 +105,11 @@ export class AssessmentEvaluationComponent implements OnInit {
           this.spinner.hide();
           this.toast.error('Something Went Wrong! Try Again Later')
         }
-      });
+      },
+      err=>  this.spinner.hide()
+      );
     }
-    else this.toast.error('No Essay To Evaluate!')
+    else this.toast.error('Submit an essay of 50 characters at least!')
   }
 
   doAssessment(item:any){

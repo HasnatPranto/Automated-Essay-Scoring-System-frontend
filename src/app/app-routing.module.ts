@@ -5,6 +5,7 @@ import { AssessorIndexComponent } from './assessor-dashboard/components/assessor
 import { CreateAssessmentComponent } from './assessor-dashboard/components/create-assessment/create-assessment.component';
 import { EvalutaionDashboardComponent } from './assessor-dashboard/components/evalutaion-dashboard/evalutaion-dashboard.component';
 import { LoginComponent } from './auth/components/login/login.component';
+import { RegisterComponent } from './auth/components/register/register.component';
 import { AuthorizationGuard } from './shared/guard/authorization.guard';
 import { AnalyticsComponent } from './student-dashboard/components/analytics/analytics.component';
 import { StudentIndexComponent } from './student-dashboard/components/student-index/student-index.component';
@@ -12,6 +13,9 @@ import { StudentIndexComponent } from './student-dashboard/components/student-in
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full'},
   { path: 'login', component: LoginComponent },
+  {
+    path: 'signup', component: RegisterComponent
+  },
   { path: 'assessor', redirectTo:'assessor/assessor-dashboard'
   },
   { path: 'student', redirectTo:'student/student-dashboard'},
