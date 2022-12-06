@@ -53,4 +53,17 @@ export class StudentService {
     ))
   }
 
+  analyticsData(sid:string){
+    return this.http.get(api.baseUrl+api.analytics_data + '?sid='+sid).pipe(
+      tap(
+        (resp:any)=>{
+          return resp;
+        },
+        Error=>{
+          this.toast.error('Something went wrong! Try again later!')
+        }
+      )
+    )
+  }
+
 }

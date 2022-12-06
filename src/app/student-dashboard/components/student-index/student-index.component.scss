@@ -8,11 +8,12 @@
 }
 .begin-btn{
   padding: 2% 40%;
-  margin-top: 2px;
+  margin-top: 5px;
   width: max-content;
   border-radius: 5px;
   color: rgb(255, 255, 255);
-  background-color: rgb(12, 145, 171);;
+  background-color: rgb(12, 145, 171);
+  @extend %boxshadow
 }
 .enlist-btn{
   margin-top: 1%;
@@ -22,15 +23,15 @@
   border-radius: 2px;
   color: rgb(255, 255, 255);
   background-color: rgb(52, 114, 35);
+  @extend %boxshadow
 }
 
 .enlist-btn:hover{
-  background-color: rgb(19, 79, 3);
-  font-weight: 600;
+  background-color: rgb(19, 66, 6);
 }
 
 .begin-btn:hover{
-  background-color: rgb(0, 50, 131);
+  background-color: rgb(38, 68, 116);
 }
 
 // form .data input, select{
@@ -121,9 +122,7 @@ a{
   text-decoration: none;
   color: #1d1f20;
 }
-li:hover{
-  font-weight: 600;
-}
+
 ul.gradient-list {
   //counter-reset: gradient-counter;
   list-style: none;
@@ -138,6 +137,9 @@ ul.gradient-list {
     min-height: 3rem;
     padding: .5rem 3rem;
     position: relative;
+    &:hover{
+      background-color: #dbebf4;
+    }
     &::before,
     &::after {
       background: linear-gradient(135deg, $blue 20%,$green 100%);

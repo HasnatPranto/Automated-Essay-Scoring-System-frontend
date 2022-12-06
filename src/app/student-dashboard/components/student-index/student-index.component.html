@@ -1,6 +1,6 @@
 <div style="width: 99%; margin: 15px; display: inline-flex;">
   <div class="card" style="width: 60%;">
-    <div class="card-title" style="margin:15px 0px 0px 20px;"><h2>My Assessments</h2></div>
+    <div class="card-title" style="margin:15px 0px 5px 20px;"><span style="font-size: 30px;font-weight: 600;">My Assessments</span></div>
     <ul class="nav nav-tabs" role="tablist">
       <li class="nav-item" role="presentation">
         <a class="nav-link active" data-bs-toggle="tab" href="#pending"  (click)="toggleView(true,false)" aria-selected="true" role="tab">Pending</a>
@@ -21,12 +21,13 @@
 
             <li *ngFor="let item of pendingAssessments">
               {{item['topic']}} <span style="float: right;"><button (click)="selectAssessment(item)" class="btn begin-btn">BEGIN</button></span><br>
-              <span style="display: inline-flex; font-size: small; font-weight: 700;">
+              <div style="display: inline-flex; font-size: small; font-weight: 600;">
                 Code: <span style="color: rgb(93, 182, 230); padding-left: 5px;">{{item['assessment_code']}}</span>
-                <span style="right: 10px; position: absolute;">
+                <span style="right: 10px; position: absolute;padding-top: 5px;">
                 Due By: <span style="color: rgb(255, 49, 22); padding-left: 5px;">{{item['deadline']|date:'EEE, MMMM dd, yyyy'}}</span>
                 </span>
-              </span>
+              </div>
+
               <br><span style="font-size: 15px;font-weight: 600;">
                 Assessor: <span style="color: rgb(59, 63, 71); padding-left: 5px;">{{item['assessor']}}</span>
                </span>
@@ -89,9 +90,11 @@
       </div>
     </div>
   </div>
+  <ngx-spinner [fullScreen] = "true" type="ball-scale-multiple"><span style="color: white;">Please Wait..</span></ngx-spinner>
+
   <div class="card" style="width: 50%;margin:0px 15px 0px 20px" *ngIf="readyForSub">
     <i class="icon-cog fa-solid fa-rotate-left" style="position: absolute;right: 20px;top:20px;font-size:x-large;" (click)="initForm()"></i>
-    <div class="card-title" style="margin:15px 0px 0px 20px;"><h4>Complete an Assessment</h4>
+    <div class="card-title" style="margin:15px 0px 0px 20px;"><span style="font-size: 30px;font-weight: 600;">Complete an Assessment</span>
     <div class="card-body">
       <form [formGroup]="assessmentDetailsForm" (ngSubmit)="onSubmit()">
           <label>Topic</label>
@@ -112,34 +115,41 @@
   </div>
   <div class="card" style="width: 40%;margin:0px 15px 0px 20px" *ngIf="viewDetails">
     <i class="icon-cog fa-solid fa-rotate-left" style="position: absolute;right: 20px;top:20px;font-size:x-large;" (click)="toggleView(false,true)"></i>
-    <div class="card-title" style="margin:15px 0px 0px 20px;"><h4 style="margin-left: 10px;">Assessment Details</h4>
+    <div class="card-title" style="margin:15px 0px 0px 20px;"><span style="font-size: 30px;font-weight: 600;">Assessment Details</span>
     </div>
           <div class="card-body" style="margin-left: 13px;">
-            <div class="row">
-              <div class="info-label">Topic</div>
-              <div class="info-data">{{assessmentDetails?.topic}}</div>
+            <div *ngIf="!assessmentDetails">
+              <span style="font-size: 20px;margin-left: -1.9%;color: rgb(162, 168, 188);">
+                Select An Assessment To View Details
+              </span>
             </div>
-            <hr>
-            <div class="row">
-              <div class="info-label">Assessor</div>
-              <div class="info-data">{{assessmentDetails?.assessor}}</div>
-            </div>
-            <hr>
-            <div class="row">
-              <div class="info-label">Late Submission</div>
-              <div class="info-data">{{assessmentDetails?.late_submit}}</div>
-            </div>
-            <hr>
-            <div class="row">
-              <div class="info-label">Score</div>
-              <div class="info-data">{{assessmentDetails?.score}}</div>
-            </div>
-            <hr>
-            <div class="row">
-              <div class="info-label">Essay</div>
-            </div>
-            <div class="row">
-              <textarea readonly style="height:320px;width: 95%; margin: 10px;">{{assessmentDetails?.content}}</textarea>
+            <div *ngIf="assessmentDetails">
+              <div class="row">
+                <div class="info-label">Topic</div>
+                <div class="info-data">{{assessmentDetails?.topic}}</div>
+              </div>
+              <hr>
+              <div class="row">
+                <div class="info-label">Assessor</div>
+                <div class="info-data">{{assessmentDetails?.assessor}}</div>
+              </div>
+              <hr>
+              <div class="row">
+                <div class="info-label">Late Submission</div>
+                <div class="info-data">{{assessmentDetails?.late_submit}}</div>
+              </div>
+              <hr>
+              <div class="row">
+                <div class="info-label">Score</div>
+                <div class="info-data">{{assessmentDetails?.score}}</div>
+              </div>
+              <hr>
+              <div class="row">
+                <div class="info-label">Essay</div>
+              </div>
+              <div class="row">
+                <textarea readonly style="height:320px;width: 95%; margin: 10px;">{{assessmentDetails?.content}}</textarea>
+              </div>
             </div>
           </div>
 

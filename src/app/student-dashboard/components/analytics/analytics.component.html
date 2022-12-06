@@ -1,0 +1,52 @@
+<div class="main-window">
+  <span class="title">
+    Performance Analytics
+  </span>
+  <div class="info-section">
+    <div class="label-title">Student Name </div>
+    <div class="data-title">{{performanceMatrix.student}}</div>
+    <div class="label">No of Assesments </div>
+    <div class="data">{{performanceMatrix.submissions}}</div>
+    <div class="label">Average Score </div>
+    <div class="data">{{performanceMatrix.avg_score}}</div>
+    <div class="label">Highest Score </div>
+    <div class="data">{{performanceMatrix.highest}}</div>
+    <div class="label">Lowest Score </div>
+    <div class="data">{{performanceMatrix.lowest}}</div>
+    <div class="label">Late Submissions </div>
+    <div class="data">{{performanceMatrix.late_sub}}</div>
+  </div>
+
+
+</div>
+<div class="chart" style="margin-left:25%; margin-top:7%;">
+  <div style="font-size: 30px;padding-bottom: 5%;">Score Distribution:</div>
+  <apx-chart
+  [series]="pieChartOptions.series"
+  [colors]="pieChartOptions.colors"
+  [dataLabels]="pieChartOptions.dataLabels"
+  [plotOptions]="pieChartOptions.plotOptions"
+  [chart]="pieChartOptions.chart"
+  [fill]="pieChartOptions.fill"
+  [legend]="pieChartOptions.legend"
+  [labels]="pieChartOptions.labels"
+  [responsive]="pieChartOptions.responsive"
+></apx-chart>
+  </div>
+  <div style=" position: absolute; border-right:2px solid rgba(170, 169, 169, 0.356);
+    margin-left: 58%;margin-top: 13%; min-height: 260px;
+  "></div>
+  <div class="chart" style="margin-left: 60%;margin-top:7%">
+    <div style="font-size: 30px;padding-bottom: 5%;">Score Timeseries:</div>
+    <apx-chart
+    [series]="lineChartOptions.series"
+    [labels]="lineChartOptions.labels"
+    [chart]="lineChartOptions.chart"
+    [xaxis]="lineChartOptions.xaxis"
+    [colors]="lineChartOptions.colors"
+    [legend]="lineChartOptions.legend"
+    [yaxis]="lineChartOptions.yaxis"
+    [title]="lineChartOptions.title"
+    [stroke]="lineChartOptions.stroke"
+  ></apx-chart>
+  </div>

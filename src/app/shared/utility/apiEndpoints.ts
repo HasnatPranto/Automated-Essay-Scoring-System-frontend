@@ -9,5 +9,9 @@ export enum api{
   enlist = "student/assessment_enlistment",
   enlisted_assessments = "student/assessments_enlisted",
   submit_assessment = "student/assessment_submission",
-  enlisted_students = "evaluation/enlisted_students"
+  enlisted_students = "evaluation/enlisted_students",
+  getSystemScore = "evaluation/system_score",
+  calculateFinalScore = "evaluation/final_score",
+  score_submission = "evaluation/score_submission",
+  analytics_data = "student/analytics_data"
 }

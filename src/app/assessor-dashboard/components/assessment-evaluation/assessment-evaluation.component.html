@@ -8,7 +8,11 @@
   </div>
   <ul>
     <div *ngIf="isSubmitted">
-      <li (click)="doAssessment(item)" tabindex="1" *ngFor="let item of submissionDone">{{item.student}} <i class="fa-solid fa-chevron-right chevron"></i><hr> </li>
+      <li (click)="doAssessment(item)" tabindex="1" *ngFor="let item of submissionDone">
+        <span *ngIf="item['manual_score']=='Pending'"><i class="fa-solid fa-square-check" style="color: rgb(190, 190, 190);"></i></span>
+        <span *ngIf="item['manual_score']!='Pending'"><i class="fa-solid fa-square-check" style="color: rgb(39, 134, 58);"></i></span>
+        {{item.student}} <i class="fa-solid fa-chevron-right chevron"></i><hr>
+      </li>
     </div>
     <div *ngIf="!isSubmitted">
       <li (click)="doAssessment(item)" tabindex="1" *ngFor="let item of submissionPending">{{item.student}} <i class="fa-solid fa-chevron-right chevron"></i><hr></li>
@@ -16,29 +20,39 @@
   </ul>
 </div>
 <div class="main-window">
+  <!-- <ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#fff" type = "ball-scale-multiple" [fullScreen] = "true"><p style="color: white" > Please Wait... </p></ngx-spinner> -->
   <span style="font-size: 25px;font-weight: 600;">Topic: {{topic}}</span>
   <div *ngIf="assessmentInHand">
+    <i class="icon-cog fa-solid fa-rotate-left ico" (click)="refresh()"></i>
     <ngx-spinner type="ball-scale-multiple"><span style="color: white;">Evaluating..</span></ngx-spinner>
-    <span style="float: right;" *ngIf="!assessmentInHand.late_submit"><span class="badge bg-success">Duly Submitted</span></span>
-    <span style="float: right;" *ngIf="assessmentInHand.late_submit"><span class="badge bg-danger">Late Submission</span></span>
+    <span style="float: right;" *ngIf="!assessmentInHand.late_submit && assessmentInHand.content!=''"><span class="badge bg-success">Duly Submitted</span></span>
+    <span style="float: right;" *ngIf="assessmentInHand.late_submit && assessmentInHand.content!=''"><span class="badge bg-danger">Late Submission</span></span>
     <div style="font-size: 20px;font-weight: 500;margin-top: 2%;"><b>Student Name:</b> {{assessmentInHand.student}}</div><br>
-    <div style="font-size: 20px;font-weight: 600;"><i> Answer Script</i></div><hr>
+    <div style="font-size: 20px;font-weight: 600;">
+      <i> Answer Script</i>
+      <span *ngIf="assessmentInHand.manual_score!='Pending'" style="float: right;font-size:20px;font-weight:500"> Obtained Score: <span style="font-weight: 600;font-size: larger;"> {{assessmentInHand?.manual_score+assessmentInHand.system_score}}</span><span style="font-size: 15px;font-weight: 600;color: rgb(138, 146, 148);"> (Manual: {{assessmentInHand?.manual_score}}, Automated: {{assessmentInHand.system_score}})</span> </span>
+    </div><hr>
     <div [innerHTML]="assessmentInHand.content"></div>
   </div>
 </div>
 <div class="marking-window">
-  <form action="#">
+  <form [formGroup]="evaluationForm" (ngSubmit)="onSubmit()">
     <div class="data">
-      <label>Manual Score</label>
-      <input type="number" />
+      <label><b>Manual Score</b></label><span style="font-size: small;margin-left: 5px"><i>(Full marks: 10)</i></span><br>
+      <input [readonly]="assessmentInHand?.manual_score!='Pending' || assessmentInHand?.content==''" (input)="isFinalScoreReady()" formControlName="manualScore" type="number" style="width: 84%;margin-bottom: 3%;;margin-top: 3%;"/>
     </div>
     <div class="data">
-      <label>System Score</label><button class="btn">Generate</button>
-      <input type="number"/>
+      <label><b>Automated Score</b></label><button (click)="generateSystemScore()" [disabled]="assessmentInHand?.manual_score!='Pending' || assessmentInHand?.content==''" type="button" class="btn btn-md generate-btn" >Generate</button>
+      <input (change)="isFinalScoreReady()"formControlName="systemScore" readonly type="text" style="width: 84%;background-color: rgb(228, 234, 239);"/>
     </div>
-    <div class="btn">
-      <div class="inner"></div>
-      <button type="submit">Submit</button>
+    <div class="data" style="margin-top: 5%;">
+      <label><b>Weight</b></label><i style="margin-left: 5px;font-size:small">(Prompt Adherence)</i>
+      <input type="range" max="1" min="0" step=".1" formControlName="weight" (change)="adjustWeight($event)">
     </div>
+    <div class="data" style="margin-top: 3%;">
+      <label><b>Final Score:</b></label>
+      <span *ngIf="finalScore" style="font-size: x-large;margin-left:10px;color: rgb(62, 72, 92);">{{finalScore}}</span>
+    </div>
+    <div style="text-align: center;margin-top: 6%;"><button [disabled]="assessmentInHand?.manual_score!='Pending' || assessmentInHand?.content==''" class="btn submit-btn" type="submit">Submit</button></div>
   </form>
 </div>

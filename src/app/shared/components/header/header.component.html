@@ -7,35 +7,27 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-info">
   <div class="container-fluid">
     <i class="icon-cog fa fa-clipboard-check" style="color:rgb(255, 255, 255);font-size: larger;margin-right: 10px;"></i><a class="navbar-brand" href="#">Automated Essay Scoring System</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
     <div class="collapse navbar-collapse" id="navbarColor01">
       <ul *ngIf="loggedIn && user.usertype=='assessor'" class="navbar-nav me-auto">
-        <!-- <li class="nav-item">
-          <a class="nav-link active" href="#">Home
-            <span class="visually-hidden">(current)</span>
-          </a>
-        </li> -->
 
         <li class="nav-item">
-          <a class="nav-link active" routerLink="/assessor"><span style="font-weight: 600; font-size: large; color: rgb(0, 255, 221);">Assessor Dashboard</span></a>
+          <a class="nav-link active" routerLink="/assessor"><span class="custom-navlink">Assessor Dashboard</span></a>
         </li>
       </ul>
       <ul *ngIf="loggedIn && user.usertype=='student'" class="navbar-nav me-auto">
         <li class="nav-item">
-          <a class="nav-link active" routerLink="/student"><span style="font-weight: 600; font-size: large; color: rgb(0, 255, 221);">Student Dashboard</span></a>
+          <a class="nav-link active" routerLink="/student"><span class="custom-navlink">Student Dashboard</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/student/analytics/{{user?.username}}"><span class="custom-navlink">Analytics</span></a>
         </li>
       </ul>
-      <div *ngIf="loggedIn" style="display: inline-flex;">
-        <i class="icon-cog fa-solid fa-circle-user"  style="color:rgb(255, 255, 255);font-size: 30px;"></i>
+      <div *ngIf="loggedIn" style="display: inline-flex;" >
+        <i class="icon-cog fa-solid fa-circle-user" data-toggle="tooltip" data-placement="bottom" title="{{user.fullname}}" style="color:rgb(255, 255, 255);font-size: 30px;"></i>
        <span style="font-size: large; font-weight: 600;color: white;margin: 0px 15px 0px 10px;">{{user?.username}}</span>
-       <i class="con-cog fa-solid fa-right-from-bracket" style="color:rgb(255, 255, 255);font-size: 30px;" (click)="logOut()"></i>
+       <i class="con-cog fa-solid fa-right-from-bracket" data-toggle="tooltip" data-placement="bottom" title="Log Out" (click)="logOut()"></i>
       </div>
-      <!-- <form class="d-flex">
-        <input class="form-control me-sm-2" type="text" placeholder="Search">
-        <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
-      </form> -->
+
     </div>
   </div>
 </nav>

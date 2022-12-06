@@ -34,7 +34,8 @@
               "node_modules/ngx-spinner/animations/line-scale-pulse-out-rapid.css"
             ],
             "scripts": [
-              "./node_modules/bootstrap/dist/js/bootstrap.min.js"
+              "./node_modules/bootstrap/dist/js/bootstrap.min.js",
+              "node_modules/apexcharts/dist/apexcharts.min.js"
             ]
           },
           "configurations": {
@@ -43,12 +44,12 @@
                 {
                   "type": "initial",
                   "maximumWarning": "500kb",
-                  "maximumError": "1mb"
+                  "maximumError": "2mb"
                 },
                 {
                   "type": "anyComponentStyle",
                   "maximumWarning": "2kb",
-                  "maximumError": "4kb"
+                  "maximumError": "10kb"
                 }
               ],
               "fileReplacements": [

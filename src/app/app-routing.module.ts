@@ -6,6 +6,7 @@ import { CreateAssessmentComponent } from './assessor-dashboard/components/creat
 import { EvalutaionDashboardComponent } from './assessor-dashboard/components/evalutaion-dashboard/evalutaion-dashboard.component';
 import { LoginComponent } from './auth/components/login/login.component';
 import { AuthorizationGuard } from './shared/guard/authorization.guard';
+import { AnalyticsComponent } from './student-dashboard/components/analytics/analytics.component';
 import { StudentIndexComponent } from './student-dashboard/components/student-index/student-index.component';
 
 const routes: Routes = [
@@ -13,11 +14,19 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'assessor', redirectTo:'assessor/assessor-dashboard'
   },
-  { path: 'student', component: StudentIndexComponent,
+  { path: 'student', redirectTo:'student/student-dashboard'},
+
+  { path: 'student/student-dashboard', component: StudentIndexComponent,
     canActivate: [AuthorizationGuard],
     data: {
       role: 'student'
     }
+  },
+  { path: 'student/analytics/:sid', component: AnalyticsComponent,
+    canActivate: [AuthorizationGuard],
+    data: {
+      role: 'student'
+    },
   },
   { path:'assessor/assessor-dashboard', component: AssessorIndexComponent,
     canActivate: [AuthorizationGuard],
@@ -30,12 +39,13 @@ const routes: Routes = [
     data: {
       role: 'assessor'
     }
-  }
+  },
+  { path: '**', redirectTo: '/login' },
 ];
 
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes,{ useHash: true })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

@@ -55,4 +55,27 @@ export class AssessorService {
       }
     ))
   }
+
+  getSystemScore(data:any){
+    return this.http.post(api.baseUrl+api.getSystemScore,{"essay":data}).pipe(tap(
+      resp=> {return resp},
+      Error=> this.toast.error('Something went wrong! Try again later!')
+      ))
+  }
+
+  calculateFScore(m:any,s:any,w:any){
+    return this.http.post(api.baseUrl+api.calculateFinalScore,{'mscore':m,'sscore':s,'weight':w}).
+      pipe(tap(
+        (resp:any) => {return resp[0]},
+        Error=> this.toast.error('Something went wrong! Try again later!')
+        ))
+  }
+
+  submitScore(form:any){
+    return this.http.post(api.baseUrl+api.score_submission,form).
+    pipe(tap(
+      (resp:any) => {return resp},
+      Error=> this.toast.error('Something went wrong! Try again later!')
+      ))
+  }
 }

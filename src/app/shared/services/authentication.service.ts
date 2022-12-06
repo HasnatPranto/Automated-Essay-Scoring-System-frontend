@@ -4,6 +4,8 @@ import { api } from '../utility/apiEndpoints';
 import { tap } from 'rxjs/operators';
 import { BehaviorSubject } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
+import { Location } from '@angular/common';
 @Injectable({
   providedIn: 'root'
 })
@@ -12,7 +14,7 @@ export class AuthenticationService {
   authState = new BehaviorSubject(null);
   user!:any;
 
-  constructor(private http:HttpClient, private toast:ToastrService) {
+  constructor(private http:HttpClient, private toast:ToastrService, private router:Router, private location: Location) {
     this.user = this.getSessionInfo();
     if(this.user) this.authState.next(this.user)
   }
@@ -72,6 +74,12 @@ export class AuthenticationService {
 
   logOut(){
     localStorage.removeItem('session_info');
-    this.authState.next(null)
+    this.authState.next(null);
+    //this.router.replaceUrl('/login')
+    //this.router.navigate(['/logout',{ replaceUrl: true}])
+    //this.location.replaceState('/login');
+    setTimeout(()=>{
+      this.router.navigate(["/login"], {replaceUrl:true});
+    },100)
   }
 }

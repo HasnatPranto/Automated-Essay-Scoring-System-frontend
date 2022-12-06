@@ -1,0 +1,49 @@
+.main-window{
+  position: absolute;
+  padding: .5% 1.5%;
+  height: max-content;
+  margin-top: .5%;
+  width: 100%;
+  min-height: 100vh;
+  border-right: #454857;
+  border: 1px;
+  box-shadow: 0.25rem 0.25rem 0.6rem rgba(0,0,0,0.05), 0 0.5rem 1.125rem rgba(75,0,0,0.05);
+}
+
+.title{
+  font-size: 30px;
+  font-weight: 600;
+}
+
+.info-section{
+  margin-top: 3%;
+  margin-left: 1%;
+  padding-right: 3%;
+  height: max-content;
+  width: 20%;
+  min-height: 60vh;
+  border-right: #454857;
+  border-right:2px solid rgba(170, 169, 169, 0.356);
+}
+
+.chart{
+  position: absolute;
+}
+.info-section > .label-title{
+  font-weight: 600;
+  font-size: 20px;
+}
+.info-section > .label{
+  font-weight: 600;
+  font-size: 18px;
+}
+.info-section > .data-title{
+  color: rgb(1, 23, 43);
+  font-size: 25px;
+  padding-bottom: 5%;
+}
+.info-section > .data{
+  color: rgb(1, 23, 43);
+  font-size: 18px;
+  padding-bottom: 5%;
+}

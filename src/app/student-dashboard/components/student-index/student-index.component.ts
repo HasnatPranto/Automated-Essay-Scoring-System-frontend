@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { AuthenticationService } from 'src/app/shared/services/authentication.service';
 import { StudentService } from '../../services/student.service';
@@ -20,16 +21,19 @@ export class StudentIndexComponent implements OnInit {
   viewDetails = false;
   assessmentDetailsForm!:FormGroup;
   assessmentDetails!:any;
+  dueTag!:any
 
   constructor(
     private toast: ToastrService,
     private router: Router,
     private studentService: StudentService,
     private authService: AuthenticationService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private spinner: NgxSpinnerService
   ) {}
 
   ngOnInit(): void {
+
     this.getMyAssessments();
     this.initForm();
   }
@@ -82,8 +86,11 @@ export class StudentIndexComponent implements OnInit {
 
   onSubmit(){
     if(this.assessmentDetailsForm.valid){
+      this.spinner.show()
       this.studentService.submitAssessment(this.assessmentDetailsForm.value).subscribe((resp:any)=>{
+        this.spinner.hide()
         if(resp.success){
+
           this.toast.success('Essay Submitted Successfully');
           this.router.navigate(['']);
         }
@@ -127,7 +134,12 @@ export class StudentIndexComponent implements OnInit {
       .subscribe((resp: any) => {
         resp.forEach((item: any) => {
           item.late_submit = item.late_submit==0?'No':'Yes'; //*pending_assessments are yes here//
-          if (item.pending){ this.pendingAssessments.push(item);}
+          if (item.pending){
+            // let dueIn = Math.floor((new Date(item.deadline).getTime()-new Date().getTime()) / 1000 / 60 / 60 / 24);
+            // if(dueIn>=-1) item.dueTag = (dueIn>=-1)? `Due in: ${dueIn+2} Day`:'Deadline Missed!'//console.log('due in '+(dueIn+2)); else console.log('missed')
+            //item.dueTag = item.deadline> Date.now()
+            this.pendingAssessments.push(item);
+          }
           else this.completedAssessments.push(item);
         });
       });

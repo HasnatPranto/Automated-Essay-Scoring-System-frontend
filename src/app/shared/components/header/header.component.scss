@@ -1,0 +1,20 @@
+i:hover{
+  color: rgb(0, 247, 255);
+}
+i{
+  cursor: pointer;
+  color: aliceblue;
+  font-size: 30px;
+}
+
+.custom-navlink{
+  font-weight: 500; font-size: large; color: rgb(231, 240, 255);
+}
+.custom-navlink:hover{
+  color: rgb(102, 253, 230);
+}
+
+.custom-navlink:active {
+  color: aqua;
+}
+
