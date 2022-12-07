@@ -12,8 +12,6 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ![...](https://github.com/HasnatPranto/Automated-Essay-Scoring-System-frontend/blob/master/ss/Screenshot%202022-12-07%20174829.jpg)
 
-![...](https://github.com/HasnatPranto/Automated-Essay-Scoring-System-frontend/blob/master/ss/Screenshot%202022-12-06%20170658.jpg)
-
 ![...](https://github.com/HasnatPranto/Automated-Essay-Scoring-System-frontend/blob/master/ss/Screenshot%202022-12-06%20175116.jpg)
 
 _**final thoughts:**_ _dont know why i chose an abnormal worklife pattern of roughly 1 week working on this application before the final demonstration, regardless knowing making it inch-perfect is an overkill for a 10-15min presentation! possible signs of ocd maybe? anyways, peace._
