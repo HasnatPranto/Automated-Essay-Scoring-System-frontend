@@ -10,9 +10,9 @@
     <div class="label">Average Score </div>
     <div class="data">{{performanceMatrix.avg_score}}</div>
     <div class="label">Highest Score </div>
-    <div class="data">{{performanceMatrix.highest}}</div>
+    <div class="data">{{performanceMatrix.highest| number : '1.1-1'}}</div>
     <div class="label">Lowest Score </div>
-    <div class="data">{{performanceMatrix.lowest}}</div>
+    <div class="data">{{performanceMatrix.lowest| number : '1.1-1'}}</div>
     <div class="label">Late Submissions </div>
     <div class="data">{{performanceMatrix.late_sub}}</div>
   </div>
@@ -21,7 +21,7 @@
 </div>
 <div class="chart" style="margin-left:25%; margin-top:7%;">
   <div style="font-size: 30px;padding-bottom: 5%;">Score Distribution:</div>
-  <apx-chart
+  <apx-chart *ngIf="dataAvailable"
   [series]="pieChartOptions.series"
   [colors]="pieChartOptions.colors"
   [dataLabels]="pieChartOptions.dataLabels"
@@ -38,7 +38,7 @@
   "></div>
   <div class="chart" style="margin-left: 60%;margin-top:7%">
     <div style="font-size: 30px;padding-bottom: 5%;">Score Timeseries:</div>
-    <apx-chart
+    <apx-chart  *ngIf="dataAvailable"
     [series]="lineChartOptions.series"
     [labels]="lineChartOptions.labels"
     [chart]="lineChartOptions.chart"

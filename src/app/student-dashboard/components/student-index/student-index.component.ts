@@ -133,6 +133,7 @@ export class StudentIndexComponent implements OnInit {
       .enlistedAssessments(this.authService.getSessionInfo().username)
       .subscribe((resp: any) => {
         resp.forEach((item: any) => {
+
           item.late_submit = item.late_submit==0?'No':'Yes'; //*pending_assessments are yes here//
           if (item.pending){
             // let dueIn = Math.floor((new Date(item.deadline).getTime()-new Date().getTime()) / 1000 / 60 / 60 / 24);

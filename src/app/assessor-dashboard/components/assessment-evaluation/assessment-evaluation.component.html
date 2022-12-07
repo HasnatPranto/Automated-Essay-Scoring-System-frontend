@@ -9,13 +9,18 @@
   <ul>
     <div *ngIf="isSubmitted">
       <li (click)="doAssessment(item)" tabindex="1" *ngFor="let item of submissionDone">
-        <span *ngIf="item['manual_score']=='Pending'"><i class="fa-solid fa-square-check" style="color: rgb(190, 190, 190);"></i></span>
-        <span *ngIf="item['manual_score']!='Pending'"><i class="fa-solid fa-square-check" style="color: rgb(39, 134, 58);"></i></span>
-        {{item.student}} <i class="fa-solid fa-chevron-right chevron"></i><hr>
+        <div style="margin: 7% 1%;">
+        <span *ngIf="item['manual_score']=='Pending'">
+          <i class="fa-solid fa-square-check" style="color: rgb(190, 190, 190);"></i></span>
+        <span *ngIf="item['manual_score']!='Pending'">
+          <i class="fa-solid fa-square-check" style="color: rgb(39, 134, 58);"></i></span>
+        {{item.student}} <i class="fa-solid fa-chevron-right chevron"></i></div>
       </li>
     </div>
     <div *ngIf="!isSubmitted">
-      <li (click)="doAssessment(item)" tabindex="1" *ngFor="let item of submissionPending">{{item.student}} <i class="fa-solid fa-chevron-right chevron"></i><hr></li>
+      <li (click)="doAssessment(item)" tabindex="1" *ngFor="let item of submissionPending">
+        <div style="margin: 7% 1%;">  <i class="fa-solid fa-square-check" style="color: rgb(190, 190, 190);margin-right: 2%;"></i>{{item.student}}</div>
+      </li>
     </div>
   </ul>
 </div>

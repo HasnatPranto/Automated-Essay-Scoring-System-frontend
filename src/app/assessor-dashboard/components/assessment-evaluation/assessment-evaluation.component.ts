@@ -97,7 +97,7 @@ export class AssessmentEvaluationComponent implements OnInit {
         if(resp.success){
           console.log(resp.result)
           this.evaluationForm.patchValue({
-            systemScore: Number(resp.result)
+            systemScore: (resp.result) //
           })
           this.isFinalScoreReady();
         }

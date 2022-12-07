@@ -60,7 +60,7 @@
             <tr *ngFor="let item of completedAssessments">
               <td>{{ item.topic }}</td>
               <td>{{ item.assessor }}</td>
-              <td>{{ item.score }}</td>
+              <td>{{ item.score}}</td>
               <td>{{ item.late_submit }}</td>
               <td> <button (click)="viewAssessmentDetails(item)" class="btn btn-info">Details</button></td>
             </tr>
@@ -148,7 +148,7 @@
                 <div class="info-label">Essay</div>
               </div>
               <div class="row">
-                <textarea readonly style="height:320px;width: 95%; margin: 10px;">{{assessmentDetails?.content}}</textarea>
+                <textarea readonly style="height:320px;width: 95%; margin: 10px;">{{assessmentDetails.content}}</textarea>
               </div>
             </div>
           </div>

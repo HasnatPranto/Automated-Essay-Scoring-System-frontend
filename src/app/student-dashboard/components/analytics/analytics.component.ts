@@ -37,9 +37,7 @@ export class AnalyticsComponent implements OnInit {
 
   @ViewChild('chart') chart!: ChartComponent;
   dataAvailable = false;
-  tradeStatData: Number[] = [20,6,2];
   pieChartData: Number[] = [];
-  tradeStatDataLabel!: any;
   today!: Date;
   public lineChartOptions!: Partial<ChartOptions> | any;
   public pieChartOptions!: Partial<ChartOptions> | any;
@@ -65,6 +63,7 @@ export class AnalyticsComponent implements OnInit {
         console.log(this.performanceMatrix)
         this.setPieChart();
         this.setlineChart();
+        this.dataAvailable = true
       }
       else this.toast.error('Something went wrong! Try again later!');
     })
